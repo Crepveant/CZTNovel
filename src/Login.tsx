@@ -24,6 +24,7 @@ const Login: React.FC = () => {
             const response = await axios.post('https://czt.wynnzeng2010.workers.dev/auth/discord/callback', { code });    
             if (response.data.sessionToken && response.data.isInGuild && response.data.hasRequiredRole) {
                 localStorage.setItem('sessionToken', response.data.sessionToken);
+                localStorage.setItem('islogin', 'true')
                 navigate('/');
             } else if (response.data.isInGuild && !response.data.hasRequiredRole) {
                 setError("There are four situations in your account:\n1. You have not purchased the original work yet!\n2. You have not submitted for review, please submit the payment screenshot to the review channel owp-authentication!\n3. The review failed, please change your ciweimao account name to the same name as Discord for review!\n4. The review is in progress, please wait patiently!");
