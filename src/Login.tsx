@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { closeLoginWindow } from './App';
 
 const Login: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
