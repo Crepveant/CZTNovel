@@ -1,10 +1,9 @@
-function openDiscord() {
-    window.open("https://discord.com/oauth2/authorize?client_id=1293967688946814986&response_type=code&redirect_uri=https%3A%2F%2Fcztnovel.pages.dev%2Flogin&scope=identify+guilds", "Discord Login", "popup,location=no,width=800,height=600,toolbar=no,menubar=no")
-}
+import openLoginWindow  from "../App";
+
 function DiscordLogin() {
     return (
         <>
-            <div id="loginfirst">Please <button style={{margin: "8px"}} onClick={() => openDiscord()}>
+            <div id="loginfirst">Please <button style={{margin: "8px"}} onClick={() => openLoginWindow()}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                     <g fill="currentColor" fill-opacity="0">
                         <circle cx="9" cy="12" r="1.5" fill-opacity="1" />

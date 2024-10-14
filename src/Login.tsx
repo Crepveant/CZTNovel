@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { closeLoginWindow } from './App';
 
 const Login: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +26,7 @@ const Login: React.FC = () => {
             if (response.data.sessionToken && response.data.isInGuild && response.data.hasRequiredRole) {
                 localStorage.setItem('sessionToken', response.data.sessionToken);
                 localStorage.setItem('islogin', 'true')
-                navigate('/');
+                closeLoginWindow()
             } else if (response.data.isInGuild && !response.data.hasRequiredRole) {
                 setError("There are four situations in your account:\n1. You have not purchased the original work yet!\n2. You have not submitted for review, please submit the payment screenshot to the review channel owp-authentication!\n3. The review failed, please change your ciweimao account name to the same name as Discord for review!\n4. The review is in progress, please wait patiently!");
             } else if (!response.data.isInGuild) {
@@ -49,7 +50,7 @@ const Login: React.FC = () => {
         <div style={{textAlign: "center"}}>
             {isLoading && <div>Loading...</div>}
             {error}
-            <button onClick={() => navigate("/")}>Back to Homepage</button>
+            {(error != null) && <button onClick={() => closeLoginWindow()}>Back to Homepage</button>}
         </div>
     )
 }
